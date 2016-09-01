@@ -1,6 +1,19 @@
+var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 module.exports = {
-  entry: './main.js',
+  entry: 
+  {
+    a:'./a.js',
+    main:'./main.js'
+  },
   output: {
-    filename: 'bundle.js'
-  }
+    filename: 'dist/[name].js'
+  },
+  module: {
+    loaders:[
+      { test: /\.css$/, loader: 'style-loader!css-loader' },
+    ]
+  },
+  plugins: [
+    new CommonsChunkPlugin('dist/init.js')
+  ]
 };
